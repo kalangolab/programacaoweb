@@ -2,7 +2,10 @@ package br.com.kalango.lab.controllers;
 
 import java.io.Serializable;
 
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+
+import br.com.kalango.lab.dao.LivroDAO;
 
 @ManagedBean
 public class PaginaPrincipalMB implements Serializable{
@@ -20,6 +23,8 @@ public class PaginaPrincipalMB implements Serializable{
 	}
 	
 	
+	@EJB
+	private LivroDAO livroDAO;
 	
 	
 }

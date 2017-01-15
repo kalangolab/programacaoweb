@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:h="http://java.sun.com/jsf/html">
+	<h:head>
+		<title>Cadastro de Livro - Livraria Kalango </title>
+	</h:head>
+	<h:body>
+		<h:form>
+			<h:panelGrid columns="2"> 
+				<h:outputText value="ID: " />
+				<h:inputText value="#{livroMB.livro.id}" />
+				<h:outputText value="Título: " />
+				<h:inputText value="#{livroMB.livro.titulo}" />
+				<h:outputText value="ISBN: " />
+				<h:inputText value="#{livroMB.livro.IBSN}" />
+				
+			</h:panelGrid>
+			<h:commandButton action="#{livroMB.salvar()}" value="Salvar Livro" />
+		</h:form>
+	</h:body>
+</html>
