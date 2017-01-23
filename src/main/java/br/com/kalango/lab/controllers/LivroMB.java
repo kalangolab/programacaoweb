@@ -1,6 +1,7 @@
 package br.com.kalango.lab.controllers;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -21,6 +22,11 @@ public class LivroMB implements Serializable {
 	private LivroDAO dao;
 	
 	private Livro livro;
+	
+	
+	public List<Livro> getLivros(){
+		return dao.listarTodos();
+	}
 	
 	@PostConstruct
 	public void init(){
