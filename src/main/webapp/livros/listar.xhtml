@@ -2,27 +2,27 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
-
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
 <h:head>
 	<title>Lista de Livros</title>
 </h:head> 
 <body> 
 	<h:form>
-		<h:dataTable value="#{livroMB.livros}" var="l">
-			<h:column>
+		<p:dataTable value="#{livroMB.livros}" var="l">
+			<p:column>
 				<f:facet name="header">Código</f:facet>
 				#{l.id}
-			</h:column>
-			<h:column>
+			</p:column>
+			<p:column>
 				<f:facet name="header">Título</f:facet>
 				#{l.titulo}
-			</h:column>
-			<h:column>
+			</p:column>
+			<p:column>
 				<f:facet name="header">ISBN</f:facet>
 				#{l.IBSN}
-			</h:column>
-		</h:dataTable>
+			</p:column>
+		</p:dataTable>
 	</h:form>
 </body> 
 </html>
