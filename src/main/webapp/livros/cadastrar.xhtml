@@ -7,6 +7,10 @@
 </h:head>
 <h:body>
 	<h:form>
+		<div style="float: right">
+			Usuário logado: #{sessaoMB.usuario}
+		</div>
+	
 		<h:panelGrid columns="2">
 			<h:outputText value="ID: " />
 			<h:inputText value="#{livroMB.livro.id}" />
