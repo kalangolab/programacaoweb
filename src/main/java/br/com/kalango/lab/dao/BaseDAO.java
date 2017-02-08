@@ -22,7 +22,7 @@ public abstract class BaseDAO<T> {
 	
 	
 	public void salvar(T tipo){
-		em.persist(tipo);
+		em.merge(tipo);
 	}
 	
 	public T atualizar(T tipo){

@@ -6,11 +6,13 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
 import br.com.kalango.lab.dao.LivroDAO;
 import br.com.kalango.lab.models.Livro;
 
 @ManagedBean
+@ViewScoped
 public class LivroMB implements Serializable {
 
 	/**
@@ -20,20 +22,19 @@ public class LivroMB implements Serializable {
 
 	@EJB
 	private LivroDAO dao;
-	
+
 	private Livro livro;
-	
-	
-	public List<Livro> getLivros(){
+
+	public List<Livro> getLivros() {
 		return dao.listarTodos();
 	}
-	
+
 	@PostConstruct
-	public void init(){
+	public void init() {
 		livro = new Livro();
 	}
-	
-	public void salvar(){
+
+	public void salvar() {
 		dao.salvar(livro);
 	}
 
@@ -44,11 +45,5 @@ public class LivroMB implements Serializable {
 	public void setLivro(Livro livro) {
 		this.livro = livro;
 	}
-	
-	
-	
-	
-	
-	
 
 }
