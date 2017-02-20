@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlType;
 
 @Entity
 public class Livro implements Serializable {
