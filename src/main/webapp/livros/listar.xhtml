@@ -1,47 +1,49 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/templates/principal.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
-<h:head>
-	<title>Lista de Livros</title>
-</h:head>
-<body>
-	<h:form id="listagem">
-		<p:dataTable value="#{livroMB.livros}" var="l">
-			<p:column>
-				<f:facet name="header">Código</f:facet>
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+	<ui:define name="menu">
+		Sem menus nessa página
+	</ui:define>
+	<ui:define name="corpo">
+		<h:form id="listagem">
+			<p:dataTable value="#{livroMB.livros}" var="l">
+				<p:column>
+					<f:facet name="header">Código</f:facet>
 				#{l.id}
 			</p:column>
-			<p:column>
-				<f:facet name="header">Título</f:facet>
+				<p:column>
+					<f:facet name="header">Título</f:facet>
 				#{l.titulo}
 			</p:column>
-			<p:column>
-				<f:facet name="header">ISBN</f:facet>
+				<p:column>
+					<f:facet name="header">ISBN</f:facet>
 				#{l.IBSN}
 			</p:column>
-			<p:column>
-				<p:commandButton oncomplete="PF('detalheLivro').show()"
-					process="@this" update=":detalhe">
-					<f:setPropertyActionListener value="#{l}" target="#{livroMB.livro}" />
-				</p:commandButton>
-			</p:column>
-		</p:dataTable>
-	</h:form>
-	<p:dialog modal="true" height="400" width="400"
-		widgetVar="detalheLivro">
-		<h:form id="detalhe">
-			<h:panelGrid columns="2">
-				<h:outputLabel value="Título: " />
-				<h:outputText value="#{livroMB.livro.titulo}" />
-				<h:outputLabel value="ISBN" />
-				<p:inputText value="#{livroMB.livro.IBSN}"></p:inputText>
-			</h:panelGrid>
-			<p:commandButton value="Salvar" action="#{livroMB.salvar()}"
-				process="@form" update="@form :listagem" />
+				<p:column>
+					<p:commandButton oncomplete="PF('detalheLivro').show()"
+						process="@this" update=":detalhe">
+						<f:setPropertyActionListener value="#{l}"
+							target="#{livroMB.livro}" />
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
 		</h:form>
-	</p:dialog>
-</body>
-</html>
+		<p:dialog modal="true" height="400" width="400"
+			widgetVar="detalheLivro">
+			<h:form id="detalhe">
+				<h:panelGrid columns="2">
+					<h:outputLabel value="Título: " />
+					<h:outputText value="#{livroMB.livro.titulo}" />
+					<h:outputLabel value="ISBN" />
+					<p:inputText value="#{livroMB.livro.IBSN}"></p:inputText>
+				</h:panelGrid>
+				<p:commandButton value="Salvar" action="#{livroMB.salvar()}"
+					process="@form" update="@form :listagem" />
+			</h:form>
+		</p:dialog>
+	</ui:define>
+
+</ui:composition>
