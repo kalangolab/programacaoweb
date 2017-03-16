@@ -1,16 +1,24 @@
 package br.com.kalango.lab.controllers;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
+
+import br.com.kalango.lab.dao.EstadoDAO;
+import br.com.kalango.lab.models.Estado;
 
 @Named
 @SessionScoped
 public class SessaoMB implements Serializable {
 
+	@Inject
+	private EstadoDAO estadoDAO;
+	
 	/**
 	 * 
 	 */
@@ -18,11 +26,13 @@ public class SessaoMB implements Serializable {
 	private String usuario;
 	private String senha;
 	
-	public void login(){
+	public String login(){
 		if(usuario.equalsIgnoreCase("kalango") && senha.equals("123456")){
 			FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Usuário logado", "Usuário Logado"));
+			return "/admin/index.jsf?faces-redirect=true";
 		}else{
 			FacesContext.getCurrentInstance().addMessage("", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuário ou senha errados!", "Usuário ou senha errados!"));
+			return "";
 		}
 			
 	}
@@ -43,7 +53,9 @@ public class SessaoMB implements Serializable {
 		this.senha = senha;
 	}
 	
-
+	public List<Estado> getListEstados(){
+		return estadoDAO.listarTodos();
+	}
 	
 	
 	

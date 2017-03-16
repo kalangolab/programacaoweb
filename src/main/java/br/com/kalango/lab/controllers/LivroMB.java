@@ -5,8 +5,10 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import br.com.kalango.lab.dao.LivroDAO;
 import br.com.kalango.lab.models.Livro;
@@ -35,7 +37,12 @@ public class LivroMB implements Serializable {
 	}
 
 	public void salvar() {
-		dao.salvar(livro);
+		try{
+			dao.salvar(livro);
+			FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Sucesso", "Operação realizada com sucesso!"));
+		}catch (Exception e) {
+			FacesContext.getCurrentInstance().addMessage("", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro", "Livro não foi salvo"));
+		}
 	}
 
 	public Livro getLivro() {

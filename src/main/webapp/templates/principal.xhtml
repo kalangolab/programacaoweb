@@ -8,24 +8,24 @@
 	<title>Livraria Kalango</title>
 </h:head>
 <body>
-	<div
-		style="width: 100%; height: 20px; background-color: blue; color: white">
+	<div style="width: 100%; height: 20px;">
 		<ui:insert name="topo">
 			<h:outputText value="#{sessaoMB.usuario}" />
 		</ui:insert>
 	</div>
-	<aside style="width:20%;float:left; background-color: yellow">
-		<ui:insert name="menu">
-			Menu
-		</ui:insert>
-	</aside>
-	<section style="width:80%;float:right; background-color: red">
-		<ui:insert name="corpo">
+	<aside style="width:20%;float:left;"> <ui:insert name="menu">
+		<h:form id="formMenu">
+			<ul>
+				<li><h:commandLink action="/livros/listar?faces-redirect=true" value="Livros" /> </li>
+			</ul>
+		</h:form>
+	</ui:insert> </aside>
+	<section style="width:80%;float:right;"> <ui:insert
+		name="corpo">
 		Corpo
-		</ui:insert> 
-	</section>
-	<div style="background-color: green;position: absolute;bottom: 0;width:100%"> 
-		<ui:insert name="fundo">Fundo</ui:insert>
+		</ui:insert> </section>
+	<div style="position: absolute; bottom: 0; width: 100%">
+		<ui:insert name="fundo">@Kalango Software</ui:insert>
 	</div>
 </body>
 </html>

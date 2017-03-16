@@ -1,25 +1,34 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns:h="http://java.sun.com/jsf/html">
-<h:head>
-	<title>Cadastro de Livro - Livraria Kalango</title>
-</h:head>
-<h:body>
-	<h:form>
-		<div style="float: right">
-			Usuário logado: #{sessaoMB.usuario}
-		</div>
-	
-		<h:panelGrid columns="2">
-			<h:outputText value="ID: " />
-			<h:inputText value="#{livroMB.livro.id}" />
-			<h:outputText value="Título: " />
-			<h:inputText value="#{livroMB.livro.titulo}" />
-			<h:outputText value="ISBN: " />
-			<h:inputText value="#{livroMB.livro.IBSN}"/>
-		</h:panelGrid>
-		<h:commandButton action="#{livroMB.salvar()}" value="Salvar" />
-	</h:form>
-</h:body>
-</html>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/templates/principal.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+	<ui:define name="corpo">
+		<h:form>
+			<p:messages showDetail="true"  />
+			<h:panelGrid columns="2">
+				<h:outputText value="ID: " />
+				<h:inputText value="#{livroMB.livro.id}" required="true"
+					requiredMessage="O campo ID é obrigatório" id="ID">
+					<f:validateDoubleRange minimum="10"  />
+				</h:inputText>
+				<h:outputText value="Título: " />
+				<h:inputText value="#{livroMB.livro.titulo}" />
+				<h:outputText value="ISBN: " />
+				<h:inputText value="#{livroMB.livro.IBSN}" />
+				<h:outputText value="Data: " />
+				<h:inputText value="#{livroMB.livro.dataLancamento}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:inputText>
+				<h:outputLabel value="Estado:" />
+				<h:selectOneMenu value="#{livroMB.livro.estado}"
+					converter="estadoConverter">
+					<f:selectItems value="#{sessaoMB.listEstados}" var="estado"
+						itemLabel="#{estado.nome}" itemValue="#{estado}" />
+				</h:selectOneMenu>
+			</h:panelGrid>
+			<h:commandButton action="#{livroMB.salvar()}" value="Salvar" />
+		</h:form>
+	</ui:define>
+</ui:composition>
